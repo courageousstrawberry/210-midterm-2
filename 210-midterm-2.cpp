@@ -285,26 +285,42 @@ int main()
     cout << "\tResulting line: " << endl;
     line.print();
     for (int minute = 2; minute <= 20; minute++){
+        int prob = 0;
         cout << "Time step #" << minute << ":" << endl; 
-        int prob = rand() % 100 + 1; // returns random number 1-100
+        // Customer is served.
+        prob = rand() % 100 + 1;
         if (prob <= 40) {
             cout << "\t" << line.get_head_val() << "is served" << endl;
             line.pop_front();
         }
-        else if (prob <= 60) {
+        // Customer joins the line.
+        prob = rand() % 100 + 1;
+        if (prob <= 60) {
             rand_index = rand() % (103 +1);
             name = names[rand_index];
             cout << "\t" << name << " joins the line" << endl;
             line.push_back(name);
         }
-        else if (prob <= 20) {
+        // Customer at the back leaves the line.
+        prob = rand() % 100 + 1;
+        if (prob <= 20) {
             cout << "\t" << line.get_tail_val() << " (at the rear) left the line" << endl;
             line.pop_back();
         }
-        else if (prob <= 10) {
+        // Random customer leaves the line.
+        prob = rand() % 100 + 1;
+        if (prob <= 10) {
             rand_index = rand() % line.get_length();
-            cout << line.get_pos_val(rand_index) << ""
+            cout << "\t\t" << line.get_pos_val(rand_index) << " left the line" << endl;
             line.delete_pos(rand_index);
+        }
+        // VIP Customer joins the line.
+        prob = rand() % 100 + 1;
+        if (prob <= 10) {
+            rand_index = rand() % (103 +1);
+            name = names[rand_index];
+            cout << "\t" << name << " (VIP) joins the front of the line" << endl;
+            line.push_front(name);
         }
 
         cout << "\t\tResulting line:" << endl;
