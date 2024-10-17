@@ -290,13 +290,13 @@ int main()
         // Customer is served.
         prob = rand() % 100 + 1;
         if (prob <= 40) {
-            cout << "\t" << line.get_head_val() << "is served" << endl;
+            cout << "\t" << line.get_head_val() << " is served" << endl;
             line.pop_front();
         }
         // Customer joins the line.
         prob = rand() % 100 + 1;
         if (prob <= 60) {
-            rand_index = rand() % (103 +1);
+            rand_index = rand() % names.size();
             name = names[rand_index];
             cout << "\t" << name << " joins the line" << endl;
             line.push_back(name);
@@ -311,13 +311,13 @@ int main()
         prob = rand() % 100 + 1;
         if (prob <= 10) {
             rand_index = rand() % line.get_length();
-            cout << "\t\t" << line.get_pos_val(rand_index) << " left the line" << endl;
-            line.delete_pos(rand_index);
+            cout << "\t" << line.get_pos_val(rand_index) << " left the line" << endl;
+            line.delete_pos(rand_index + 1);
         }
         // VIP Customer joins the line.
         prob = rand() % 100 + 1;
         if (prob <= 10) {
-            rand_index = rand() % (103 +1);
+            rand_index = rand() % names.size();
             name = names[rand_index];
             cout << "\t" << name << " (VIP) joins the front of the line" << endl;
             line.push_front(name);
