@@ -194,7 +194,7 @@ public:
         }
         while (current)
         {
-            cout << current->name << " ";
+            cout << "\t\t" << current->name << endl;
             current = current->next;
         }
         cout << endl;
@@ -232,16 +232,25 @@ int main()
     }
     names_list.close();
 
-    cout << "Store opens:"
+    cout << "Store opens:" << endl;
+
     for (int i = 0; i < 5; i++) {
         rand_index = rand() % (103 +1);
         string name = names[rand_index];
+        cout << "\t" << name << " joins the line" << endl;
         line.push_back(name);
     }
     
+    cout << "\tResulting line: " << endl;
+    line.print();
     for (int minute = 1; minute <= 20; minute++){
+        cout << "Time step #2:" << endl; 
+        int prob = rand() % 100 + 1  // returns random number 1-100
+        if (prob <= 40) {
+            cout << line.
+        }
 
-
+   
     }
     return 0;
 }
