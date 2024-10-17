@@ -224,6 +224,25 @@ public:
         }
         return count;
     }
+    // Function to get the value at a specific position in the list.
+    string get_pos_val(int pos) {
+        int count = 0;
+        if (!head) {
+            return " ";
+        }
+        Node* temp = head;
+        while(temp && (count != pos)) {
+            temp = temp->next;
+            count++;
+        }
+        // Check if temp hasn't reached past the end of the list.
+        if (temp) {
+            return temp->name;
+        }
+        else {
+            return " ";
+        }
+    }
     string get_head_val() {
         if (!head) {
             return " ";
@@ -278,9 +297,14 @@ int main()
             cout << "\t" << name << " joins the line" << endl;
             line.push_back(name);
         }
-        else if (prob <=20) {
+        else if (prob <= 20) {
             cout << "\t" << line.get_tail_val() << " (at the rear) left the line" << endl;
             line.pop_back();
+        }
+        else if (prob <= 10) {
+            rand_index = rand() % line.get_length();
+            cout << line.get_pos_val(rand_index) << ""
+            line.delete_pos(rand_index);
         }
 
         cout << "\t\tResulting line:" << endl;
