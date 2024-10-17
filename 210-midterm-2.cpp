@@ -214,6 +214,12 @@ public:
         }
         cout << endl;
     }
+    string get_head_val() {
+        return head->name;
+    }
+    string get_tail_val() {
+        return tail->name;
+    }
 };
 int main()
 {
@@ -236,7 +242,7 @@ int main()
 
     for (int i = 0; i < 5; i++) {
         rand_index = rand() % (103 +1);
-        string name = names[rand_index];
+        name = names[rand_index];
         cout << "\t" << name << " joins the line" << endl;
         line.push_back(name);
     }
@@ -245,11 +251,21 @@ int main()
     line.print();
     for (int minute = 1; minute <= 20; minute++){
         cout << "Time step #2:" << endl; 
-        int prob = rand() % 100 + 1  // returns random number 1-100
+        int prob = rand() % 100 + 1; // returns random number 1-100
         if (prob <= 40) {
-            cout << line.
+            cout << "\t" << line.get_head_val() << "is served" << endl;
+            line.pop_front();
         }
-
+        else if (prob <= 60) {
+            rand_index = rand() % (103 +1);
+            name = names[rand_index];
+            cout << "\t" << name << " joins the line" << endl;
+            line.push_back(name);
+        }
+        else if (prob <=20) {
+            cout << "\t" << line.get_tail_val() << " (at the rear) left the line" << endl;
+            line.pop_back();
+        }
    
     }
     return 0;
