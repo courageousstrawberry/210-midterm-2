@@ -1,17 +1,20 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+
 class DoublyLinkedList
 {
 private:
     struct Node
     {
-        int data;
+        string name;
         Node *prev;
         Node *next;
-        Node(int val, Node *p = nullptr, Node *n = nullptr)
+        Node(string n, Node *p = nullptr, Node *n = nullptr)
         {
-            data = val;
+            name = n;
             prev = p;
             next = n;
         }
@@ -60,7 +63,7 @@ public:
         if (!head)
             return;
         Node *temp = head;
-        while (temp && temp->data != value)
+        while (temp && temp->name != value)
             temp = temp->next;
         if (!temp)
             return;
