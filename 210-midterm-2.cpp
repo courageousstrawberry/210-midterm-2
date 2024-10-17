@@ -214,10 +214,26 @@ public:
         }
         cout << endl;
     }
+    // Function to return the length of the list.
+    int get_length() {
+        Node *temp = head;
+        int count = 0;
+        while(temp) {
+            count++;
+            temp = temp->next;
+        }
+        return count;
+    }
     string get_head_val() {
+        if (!head) {
+            return " ";
+        }
         return head->name;
     }
     string get_tail_val() {
+        if (!tail) {
+            return " ";
+        }
         return tail->name;
     }
 };
@@ -241,7 +257,7 @@ int main()
     cout << "Store opens:" << endl;
 
     for (int i = 0; i < 5; i++) {
-        rand_index = rand() % (103 +1);
+        rand_index = rand() % 103;
         name = names[rand_index];
         cout << "\t" << name << " joins the line" << endl;
         line.push_back(name);
@@ -249,8 +265,8 @@ int main()
     
     cout << "\tResulting line: " << endl;
     line.print();
-    for (int minute = 1; minute <= 20; minute++){
-        cout << "Time step #2:" << endl; 
+    for (int minute = 2; minute <= 20; minute++){
+        cout << "Time step #" << minute << ":" << endl; 
         int prob = rand() % 100 + 1; // returns random number 1-100
         if (prob <= 40) {
             cout << "\t" << line.get_head_val() << "is served" << endl;
@@ -266,7 +282,9 @@ int main()
             cout << "\t" << line.get_tail_val() << " (at the rear) left the line" << endl;
             line.pop_back();
         }
-   
+
+        cout << "\t\tResulting line:" << endl;
+        line.print();
     }
     return 0;
 }
