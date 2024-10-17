@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -12,11 +14,11 @@ private:
         string name;
         Node *prev;
         Node *next;
-        Node(string n, Node *p = nullptr, Node *n = nullptr)
+        Node(string n, Node *p = nullptr, Node *ne = nullptr)
         {
             name = n;
             prev = p;
-            next = n;
+            next = ne;
         }
     };
     Node *head;
@@ -28,7 +30,7 @@ public:
         head = nullptr;
         tail = nullptr;
     }
-    void insert_after(int value, int position)
+    void insert_after(string value, int position)
     {
         if (position < 0)
         {
@@ -58,7 +60,7 @@ public:
             tail = newNode;
         temp->next = newNode;
     }
-    void delete_val(int value)
+    void delete_val(string value)
     {
         if (!head)
             return;
@@ -115,7 +117,7 @@ public:
         temp->next->prev = tempPrev;
         delete temp;
     }
-    void push_back(int v)
+    void push_back(string v)
     {
         Node *newNode = new Node(v);
         if (!tail)
@@ -127,7 +129,7 @@ public:
             tail = newNode;
         }
     }
-    void push_front(int v)
+    void push_front(string v)
     {
         Node *newNode = new Node(v);
         if (!head)
@@ -192,7 +194,7 @@ public:
         }
         while (current)
         {
-            cout << current->data << " ";
+            cout << current->name << " ";
             current = current->next;
         }
         cout << endl;
@@ -207,7 +209,7 @@ public:
         }
         while (current)
         {
-            cout << current->data << " ";
+            cout << current->name << " ";
             current = current->prev;
         }
         cout << endl;
@@ -215,6 +217,31 @@ public:
 };
 int main()
 {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid compiler warning 
+    srand(time(0));
+    DoublyLinkedList line;
+
+    int rand_index;
+
+    ifstream names_list("names.txt");
+    vector<string> names;
+    string name;
+
+    // Store all the names from the txt file to the vector.
+    while (getline(names_list, name)) {
+        names.push_back(name);
+    }
+    names_list.close();
+
+    cout << "Store opens:"
+    for (int i = 0; i < 5; i++) {
+        rand_index = rand() % (103 +1);
+        string name = names[rand_index];
+        line.push_back(name);
+    }
+    
+    for (int minute = 1; minute <= 20; minute++){
+
+
+    }
     return 0;
 }
